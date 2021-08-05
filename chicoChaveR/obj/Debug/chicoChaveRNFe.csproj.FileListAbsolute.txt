@@ -1,0 +1,9 @@
+C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\chicoChaveR.exe.config
+C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\chicoChaveR.exe
+C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\chicoChaveR.pdb
+C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\Newtonsoft.Json.dll
+C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\Newtonsoft.Json.xml
+C:\Projetos\chicoChaveR\chicoChaveR\obj\Debug\chicoChaveRNFe.csproj.CoreCompileInputs.cache
+C:\Projetos\chicoChaveR\chicoChaveR\obj\Debug\chicoChaveRNFe.csproj.CopyComplete
+C:\Projetos\chicoChaveR\chicoChaveR\obj\Debug\chicoChaveR.exe
+C:\Projetos\chicoChaveR\chicoChaveR\obj\Debug\chicoChaveR.pdb
