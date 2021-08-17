@@ -10,11 +10,11 @@ namespace chicoChaveR
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Digite a UF do emitente: 2 digitos");
+            Console.WriteLine("Digite a UF do emitente: 02 digitos");
             string uf = Console.ReadLine();
             Console.WriteLine("");
 
-            Console.WriteLine("Digite data de emissao: ( AAMM ) 4 digitos");
+            Console.WriteLine("Digite data de emissao: ( AAMM ) 04 digitos");
             string dEmi = Console.ReadLine();
             Console.WriteLine("");
 
@@ -30,7 +30,7 @@ namespace chicoChaveR
             string serie = Console.ReadLine();
             Console.WriteLine("");
 
-            Console.WriteLine("Digite o numero do documento: 9 digitos ");
+            Console.WriteLine("Digite o numero do documento: 09 digitos ");
             string nDoc = Console.ReadLine();
             Console.WriteLine("");
 
@@ -64,7 +64,8 @@ namespace chicoChaveR
                 string xMotivo = retConsSitNFe.xMotivo;
                 string chaveEncontrada = new String(xMotivo.Where(Char.IsDigit).ToArray());
 
-                Console.WriteLine("Chico ChaveR descobriu a chave: " + chaveEncontrada);
+                if (chaveEncontrada != "") { Console.WriteLine("Chico ChaveR descobriu a chave: " + chaveEncontrada); }
+                else { Console.WriteLine("Chico ChaveR não encontrou a chave: " + xMotivo); }
 
                 Console.ReadKey();
             }
@@ -76,7 +77,8 @@ namespace chicoChaveR
                 string xMotivo = nfeProc.xMotivo;
                 string chaveEncontrada = new String(xMotivo.Where(Char.IsDigit).ToArray());
 
-                Console.WriteLine("Chico ChaveR descobriu a chave: " + chaveEncontrada);
+                if (chaveEncontrada != "") { Console.WriteLine("Chico ChaveR descobriu a chave: " + chaveEncontrada); }
+                else { Console.WriteLine("Chico ChaveR não encontrou a chave: " + xMotivo); }
 
                 Console.ReadKey();
             }
@@ -144,7 +146,7 @@ namespace chicoChaveR
                             retorno = streamReader.ReadToEnd();
                         }
 
-                        switch (System.Convert.ToInt32(response.StatusCode))
+                        switch (Convert.ToInt32(response.StatusCode))
                         {
                             case 401:
                                 {
@@ -215,9 +217,12 @@ namespace chicoChaveR
                 else
                     pesoMultiplicacao = 2;
             }
+
             restoDivisao = soma % 11;
+
             if (restoDivisao == 0 || restoDivisao == 1)
                 digitoVerificador = 0;
+
             else
                 digitoVerificador = 11 - restoDivisao;
 
