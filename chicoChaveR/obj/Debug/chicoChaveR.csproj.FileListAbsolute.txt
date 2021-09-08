@@ -7,3 +7,13 @@ C:\Projetos\chicoChaveR\chicoChaveR\obj\Debug\chicoChaveR.pdb
 C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\Newtonsoft.Json.dll
 C:\Projetos\chicoChaveR\chicoChaveR\bin\Debug\Newtonsoft.Json.xml
 C:\Projetos\chicoChaveR\chicoChaveR\obj\Debug\chicoChaveR.csproj.CopyComplete
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\bin\Debug\chicoChaveR.exe.config
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\bin\Debug\chicoChaveR.exe
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\bin\Debug\chicoChaveR.pdb
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\bin\Debug\Newtonsoft.Json.dll
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\bin\Debug\Newtonsoft.Json.xml
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\obj\Debug\chicoChaveR.csprojAssemblyReference.cache
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\obj\Debug\chicoChaveR.csproj.CoreCompileInputs.cache
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\obj\Debug\chicoChaveR.csproj.CopyComplete
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\obj\Debug\chicoChaveR.exe
+C:\Users\fernando.konflanz\GitHub\chico-chave-r\chicoChaveR\obj\Debug\chicoChaveR.pdb

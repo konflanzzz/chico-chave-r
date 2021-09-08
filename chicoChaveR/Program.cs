@@ -56,6 +56,9 @@ namespace chicoChaveR
                 versao = "4.00",
             };
 
+            //Console.WriteLine("Chave de acesso gerada pelo Chico: \n");
+            //Console.WriteLine(chave44);
+
             if (mod == "55")
             {
                 string retorno = consultarSituacaoDocumento("55", ConsSitReq);
