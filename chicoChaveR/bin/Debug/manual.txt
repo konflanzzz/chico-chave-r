@@ -1,0 +1,18 @@
+Para usar este executável há duas formas:
+
+SOMENTE NFCE
+
+ao abrir a tela você verá duas opções
+
+1: para que o chico adivinhe uma chave somente
+2: para que o chico adivinhe uma lista de chaves
+
+
+
+caso queira encontrar uma chave somente, informe o token da software house, e apos, uma chave de referencia, pode ser inserida manualmente, seguindo a estrutura de uma chave de acesso , ou colar a chave que o parceiro informou. será retornado a chave autorizada, independente de emissao normal ou contingencia.
+
+caso queira precise encontrar uma lista de chaves, por favor insira no arquivo "chaves.txt" todas as chaves que precise encontrar, tendo cuidado para que nao fique linhas vazias, ou caracteres diferentes de numéricos. Neste método, será retornado a chave autorizada, independente de emissao normal ou contingencia, junto ao retorno de autorizado da nfce.
+
+
+
+apos o uso, limpe os arquivos chaves.txt e consultas.txt
