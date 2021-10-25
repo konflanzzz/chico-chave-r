@@ -35,12 +35,14 @@ namespace chicoChaveR
             {
                 Console.WriteLine("sh_token: ");
                 string token = Console.ReadLine();
+                Console.Clear();
 
                 adivinharChaves(token);
 
                 Thread.Sleep(15000);
             }
         }
+
         static void adivinharChaves(string sh_token)
         {
             string[] chaves = lerArquivoChaves();
@@ -52,6 +54,7 @@ namespace chicoChaveR
             }
 
         }
+
         static string adivinharChave(string chaveInformada, string sh_token, bool gravarRetorno = false)
         {
             string chaveNormal = verificarEmissaoNormal(chaveInformada, sh_token, gravarRetorno);
@@ -69,13 +72,18 @@ namespace chicoChaveR
                 if (gravarRetorno)
                 {
                     dynamic situacao = obterSituacao(chaveEncontrada, sh_token);
+
                     DateTime dataEmissao = Convert.ToDateTime(situacao.dhRecbto);
                     string dataLog = dataEmissao.ToShortDateString().ToString().Replace("/", "");
 
-                    using (StreamWriter outputFile = new StreamWriter(@"./ret/" + "autorizadas_" + dataLog + ".txt", true))
-                    {
-                        outputFile.WriteLine(chaveEncontrada + " : " + situacao);
-                    }
+                    // criar um diretorio com a data da emissao
+                    criarDiretorios(dataLog);
+
+                    // salvar um arquivo de chaves a recuperar
+                    gerarArquivoChavesRecuperar(dataLog, chaveEncontrada);
+
+                    // salvar um arquivo com a situacao delas
+                    gerarArquivoSituacao(dataLog, chaveEncontrada, situacao);
                 }
             }
 
@@ -91,10 +99,16 @@ namespace chicoChaveR
                     DateTime dataEmissao = Convert.ToDateTime(situacao.dhRecbto);
                     string dataLog = dataEmissao.ToShortDateString().ToString().Replace("/", "");
 
-                    using (StreamWriter outputFile = new StreamWriter(@"./ret/" + "autorizadas_" + dataLog + ".txt", true))
-                    {
-                        outputFile.WriteLine(chaveEncontrada + " : " + situacao);
-                    }
+
+                    // criar um diretorio com a data da emissao
+                    criarDiretorios(dataLog);
+
+                    // salvar um arquivo de chaves a recuperar
+                    gerarArquivoChavesRecuperar(dataLog, chaveEncontrada);
+
+                    // salvar um arquivo com a situacao delas
+                    gerarArquivoSituacao(dataLog, chaveEncontrada, situacao);
+
                 }
             }
 
@@ -103,15 +117,14 @@ namespace chicoChaveR
                 Console.WriteLine("Chico ChaveR nao encontrou a chave: " + chaveInformada);
                 if (gravarRetorno)
                 {
-                    using (StreamWriter outputFile = new StreamWriter(@"./ret/" + "nao_autorizadas" + ".txt", true))
-                    {
-                        outputFile.WriteLine(chaveInformada);
-                    }
+                    // salvar um arquivo com as chaves nao encontradas
+                    gerarArquivoNaoAutorizadas(chaveInformada);
                 }
             }
 
             return chaveEncontrada;
         }
+
         private static string verificarEmissaoNormal(string chave, string sh_token, bool gravarRetorno = false)
         {
             string chave_verificar = chave.Remove(chave.Length - 9, 9);
@@ -124,6 +137,7 @@ namespace chicoChaveR
             return chaveEmissaoNormal;
 
         }
+
         private static string verificarEmissaoContingencia(string chave, string sh_token, bool gravarRetorno = false)
         {
             string chave_verificar = chave.Remove(chave.Length - 9, 9);
@@ -135,6 +149,7 @@ namespace chicoChaveR
             string chaveContingencia = obterChave(chave_verificar, sh_token, gravarRetorno);
             return chaveContingencia;
         }
+
         private static string obterChave(string chave, string sh_token, bool gravarRetorno = false)
         {
             string cnpj = getCNPJ(chave);
@@ -156,6 +171,7 @@ namespace chicoChaveR
 
             return chaveEncontrada;
         }
+
         private static dynamic obterSituacao(string chave, string sh_token)
         {
             string cnpj = getCNPJ(chave);
@@ -175,6 +191,7 @@ namespace chicoChaveR
 
             return nfeProc;
         }
+
         public static int gerarCodigoCDF()
         {
             int min = 10000000;
@@ -182,6 +199,7 @@ namespace chicoChaveR
             Random random = new Random();
             return random.Next(min, max);
         }
+
         public static string consultarSituacaoDocumento(string modelo, ConsSitReq ConsSitReq, string sh_token)
         {
             string urlConsSit = "";
@@ -203,6 +221,7 @@ namespace chicoChaveR
 
             return resposta;
         }
+
         private static int GerarDigitoVerificador(string chave43)
         {
             int soma = 0;
@@ -231,6 +250,7 @@ namespace chicoChaveR
 
             return digitoVerificador;
         }
+
         private static string[] lerArquivoChaves()
         {
             try
@@ -254,6 +274,7 @@ namespace chicoChaveR
             novaChave = novaChave + GerarDigitoVerificador(chave);
 
             return novaChave;        }
+
         private static string getCNPJ(string chave)
         {
             string cnpj = chave.Remove(chave.Length - 24, 24);
@@ -270,6 +291,39 @@ namespace chicoChaveR
             return mod;
         }
 
+        private static void criarDiretorios(string dataLog)
+        {
+            string caminho = @".\ret\"+ dataLog;
+
+            if (!Directory.Exists(caminho))
+                Directory.CreateDirectory(caminho);
+        }
+
+        private static void gerarArquivoChavesRecuperar(string dataLog, string chaveEncontrada)
+        {
+            using (StreamWriter outputFile = new StreamWriter(@"./ret/"+ dataLog + @"\" + "chaves_recuperar" + ".txt", true))
+            {
+                outputFile.WriteLine(chaveEncontrada);
+            }
+        }
+
+        private static void gerarArquivoSituacao(string dataLog, string chaveEncontrada, dynamic situacao)
+        {
+            using (StreamWriter outputFile = new StreamWriter(@"./ret/" + dataLog + @"\" + "situacao_autorizadas" + ".txt", true))
+            {
+                string conteudo = chaveEncontrada + " : " + situacao;
+                outputFile.WriteLine(conteudo.Replace("\n", "").Replace("\r", ""));
+            }
+        }
+
+        private static void gerarArquivoNaoAutorizadas(string chaveInformada)
+        {
+            using (StreamWriter outputFile = new StreamWriter(@"./ret/" + "nao_autorizadas" + ".txt", true))
+            {
+                outputFile.WriteLine(chaveInformada);
+            }
+        }
+
         public class ConsSitReq
         {
             public string licencaCnpj { get; set; }
@@ -277,6 +331,7 @@ namespace chicoChaveR
             public string chNFe { get; set; }
             public string versao { get; set; }
         }
+
         public class NSSuite
         {
             public static string enviaConteudoParaAPI(string conteudo, string url, string tpConteudo, string sh_token)
